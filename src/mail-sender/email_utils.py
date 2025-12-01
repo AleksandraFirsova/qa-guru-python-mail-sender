@@ -16,12 +16,18 @@ def clean_body_text(body: str) -> str:
 
 
 def build_sent_text(email: dict) -> str:
+    recipient = email.get("recipient", "")
+    sender = email.get("sender", "")
+    subject = email.get("subject", "")
+    date = email.get("date", "")
     body = email.get("body", "")
 
+    clean_body = clean_body_text(body)
+
     return (
-        f"Кому: {email['recipient']}, от {email['sender']}\n"
-        f"Тема: {email['subject']}, дата {email['date']}\n"
-        f"{body}"
+        f"Кому: {recipient}, от {sender}\n"
+        f"Тема: {subject}, дата {date}\n"
+        f"{clean_body}"
     )
 
 
